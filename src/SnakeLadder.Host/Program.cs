@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SnakeLadder.Host.contracts;
+using System;
+using System.Linq;
 
 namespace SnakeLadder.Host
 {
@@ -8,7 +10,11 @@ namespace SnakeLadder.Host
         {
             var snakes = Constants.SetSnakes();
             var ladders = Constants.SetLadders();
-            Display.Board(snakes, ladders);
+            var board = Display.SetBoard(snakes, ladders);
+            bool isNormalDice = Display.SetDice();
+            Service.Start(snakes, ladders, board, isNormalDice);
+
+            Console.ReadKey();
             Console.ReadKey();
         }
     }
