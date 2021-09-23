@@ -1,8 +1,8 @@
 ﻿namespace SnakeLadder.Host.contracts
 {
-    public class Count
+    public class Grid
     {
-        public Count(string key, Index index)
+        public Grid(string key, Index index)
         {
             Key = key;
             Index = index;

@@ -1,21 +1,20 @@
-﻿using SnakeLadder.Host.contracts;
-using System;
-using System.Linq;
-
+﻿using Microsoft.Extensions.DependencyInjection;
+using SnakeLadder.Host.DataContracts;
 namespace SnakeLadder.Host
 {
     public class Program
     {
         static void Main(string[] args)
         {
-            var snakes = Constants.SetSnakes();
-            var ladders = Constants.SetLadders();
-            var board = Display.SetBoard(snakes, ladders);
-            bool isNormalDice = Display.SetDice();
-            Service.Start(snakes, ladders, board, isNormalDice);
+            var serviceCollection = new ServiceCollection()
+                                   .AddSingleton<IConstants, Constants>()
+                                   .AddSingleton<IOrchestrator, Orchestrator>()
+                                   .BuildServiceProvider();
 
-            Console.ReadKey();
-            Console.ReadKey();
+            var orchestrator = serviceCollection.GetService<IOrchestrator>();
+
+            orchestrator.Start();
+            orchestrator.End();
         }
     }
 }

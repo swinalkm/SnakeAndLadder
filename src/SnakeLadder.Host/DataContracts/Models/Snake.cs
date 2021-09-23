@@ -2,6 +2,11 @@
 {
     public class Snake
     {
+        //lets say S-2 is at position 21 in board 
+        //Key = S-2
+        //headValue = 21
+        //Head index{7,0}
+        //Tail index{9,1}
         public Snake(string key, int headValue, Index head, Index tail)
         {
             Key = key;
