@@ -84,7 +84,7 @@ namespace SnakeLadder.Host
                 var playerValue = board.FirstOrDefault(x => x.Index.Row.Equals(ladder.Tip.Row) && x.Index.Column.Equals(ladder.Tip.Column));
                 string stringValue = GetValue(playerValue, "L-");
                 player.CurrentPossition = Int16.Parse(stringValue);
-                player.Index = new Index(ladder.Tip.Row, ladder.Tip.Column);
+                player.Index = new Index(ladder.Foot.Row, ladder.Foot.Column);
             }
             return player;
         }

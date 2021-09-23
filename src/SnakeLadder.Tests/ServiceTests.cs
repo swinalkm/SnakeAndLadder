@@ -44,16 +44,16 @@ namespace SnakeLadder.Tests
             Assert.Equal(response.Index.Column, 1);
         }
         [Fact]
-        public void Ladder_at38_shouldMovePlayerTo77_success()
+        public void Ladder_at7_shouldMovePlayerTo40_success()
         {
             var snake = _constants.SetSnakes();
             var ladder = _constants.SetLadders();
-            var response = _service.GetCurrentPosition(snake, ladder, _constants.SetBoard(snake, ladder), new Host.contracts.Player(37, new Host.contracts.Index(6, 3)), 1);
+            var response = _service.GetCurrentPosition(snake, ladder, _constants.SetBoard(snake, ladder), new Host.contracts.Player(6, new Host.contracts.Index(6, 3)), 1);
 
             Assert.NotNull(response);
-            Assert.Equal(response.CurrentPossition, 77);
-            Assert.Equal(response.Index.Row, 2);
-            Assert.Equal(response.Index.Column, 3);
+            Assert.Equal(response.CurrentPossition, 40);
+            Assert.Equal(response.Index.Row, 6);
+            Assert.Equal(response.Index.Column, 0);
         }
     }
 }
