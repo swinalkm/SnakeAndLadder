@@ -9,6 +9,7 @@ namespace SnakeLadder.Host
             var serviceCollection = new ServiceCollection()
                                    .AddSingleton<IConstants, Constants>()
                                    .AddSingleton<IOrchestrator, Orchestrator>()
+                                   .AddSingleton<IService, Service>()
                                    .BuildServiceProvider();
 
             var orchestrator = serviceCollection.GetService<IOrchestrator>();

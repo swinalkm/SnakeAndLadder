@@ -6,10 +6,12 @@ namespace SnakeLadder.Host
     public class Orchestrator : IOrchestrator
     {
         private IConstants _constants;
+        private IService _service;
 
-        public Orchestrator(IConstants constants)
+        public Orchestrator(IConstants constants, IService service)
         {
             _constants = constants;
+            _service = service;
         }
 
         public void Start()
@@ -20,7 +22,7 @@ namespace SnakeLadder.Host
             var dice = _constants.SetDice();
             var board = _constants.SetBoard(snakes, ladders);
 
-            Service.Start(snakes, ladders, board, dice.IsNormalDice);
+            _service.Start(snakes, ladders, board, dice.IsNormalDice);
         }
         public void End()
         {

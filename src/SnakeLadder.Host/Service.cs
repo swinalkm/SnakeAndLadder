@@ -5,9 +5,9 @@ using System.Linq;
 
 namespace SnakeLadder.Host
 {
-    public class Service
+    public class Service : IService
     {
-        public static void Start(List<Snake> snakes, List<Ladder> ladders, List<Grid> board, bool isNormalDice)
+        public void Start(List<Snake> snakes, List<Ladder> ladders, List<Grid> board, bool isNormalDice)
         {
             var player1 = new Player(1, new Index(0, 0));
             int toRollPlayer1 = 0;
@@ -46,7 +46,7 @@ namespace SnakeLadder.Host
             }
         }
 
-        private static int RollDice(Random random, bool isNormalDice)
+        public int RollDice(Random random, bool isNormalDice)
         {
             if (isNormalDice == true)
                 return random.Next(1, 7);
@@ -61,7 +61,7 @@ namespace SnakeLadder.Host
             return 6;
         }
 
-        private static Player GetCurrentPosition(List<Snake> snakes, List<Ladder> ladders, List<Grid> board, Player player, int toRoll)
+        public Player GetCurrentPosition(List<Snake> snakes, List<Ladder> ladders, List<Grid> board, Player player, int toRoll)
         {
             var total = player.CurrentPossition + toRoll;
 
@@ -89,7 +89,7 @@ namespace SnakeLadder.Host
             return player;
         }
 
-        private static string GetValue(Grid playerValue, string key)
+        public string GetValue(Grid playerValue, string key)
         {
             return playerValue.Key.Replace(key, "  ").Trim();
         }
