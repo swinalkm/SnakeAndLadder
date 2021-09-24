@@ -74,7 +74,7 @@ namespace SnakeLadder.Host
             {
                 for (int j = 0; j < 10; j++)
                 {
-                    if ((snakes.Exists(snake => snake.Head.Row.Equals(i) && snake.Head.Column.Equals(j))) || (ladders.Exists(ladder => ladder.Tip.Row.Equals(i) && ladder.Tip.Column.Equals(j))))
+                    if ((snakes.Exists(snake => snake.Head.Row.Equals(i) && snake.Head.Column.Equals(j))) || (ladders.Exists(ladder => ladder.Foot.Row.Equals(i) && ladder.Foot.Column.Equals(j))))
                     {
                         boardValue = Helper.SetSnakeNLadder(snakes, ladders, i, j);
                     }

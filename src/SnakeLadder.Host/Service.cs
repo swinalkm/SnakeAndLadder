@@ -25,14 +25,14 @@ namespace SnakeLadder.Host
                 //player 1
                 toRollPlayer1 = RollDice(random, isNormalDice);
                 Console.WriteLine("PLAYER 1 :  CURRENT POSITION = " + player1.CurrentPossition + ", DICE ROLLED TO = " + toRollPlayer1);
-                player1 = GetCurrentPosition(snakes, ladders, board, player1, toRollPlayer1);
+                player1 = GetNextCurrentPosition(snakes, ladders, board, player1, toRollPlayer1);
                 //player 2
                 toRollPlayer2 = RollDice(random, isNormalDice);
                 Console.WriteLine("PLAYER 2 :  CURRENT POSITION = " + player2.CurrentPossition + ", DICE ROLLED TO = " + toRollPlayer2);
-                player2 = GetCurrentPosition(snakes, ladders, board, player2, toRollPlayer2);
+                player2 = GetNextCurrentPosition(snakes, ladders, board, player2, toRollPlayer2);
                 index++;
 
-            } while (player1.CurrentPossition != 100 || player2.CurrentPossition != 100);
+            } while (true);
             Console.WriteLine("FINAL SCORES : ");
             if (player1.CurrentPossition == 100)
             {
@@ -48,20 +48,20 @@ namespace SnakeLadder.Host
 
         public int RollDice(Random random, bool isNormalDice)
         {
+            var randomNo = random.Next(1, 7);
             if (isNormalDice == true)
-                return random.Next(1, 7);
+                return randomNo;
             else
             {
-                var no = random.Next(1, 7);
-                if (no % 2 == 0)
-                    return no;
+                if (randomNo % 2 == 0)
+                    return randomNo;
                 else
                     RollDice(new Random(), false);
             }
             return 6;
         }
 
-        public Player GetCurrentPosition(List<Snake> snakes, List<Ladder> ladders, List<Grid> board, Player player, int toRoll)
+        public Player GetNextCurrentPosition(List<Snake> snakes, List<Ladder> ladders, List<Grid> board, Player player, int toRoll)
         {
             var total = player.CurrentPossition + toRoll;
 
@@ -84,7 +84,7 @@ namespace SnakeLadder.Host
                 var playerValue = board.FirstOrDefault(x => x.Index.Row.Equals(ladder.Tip.Row) && x.Index.Column.Equals(ladder.Tip.Column));
                 string stringValue = GetValue(playerValue, "L-");
                 player.CurrentPossition = Int16.Parse(stringValue);
-                player.Index = new Index(ladder.Foot.Row, ladder.Foot.Column);
+                player.Index = new Index(ladder.Tip.Row, ladder.Tip.Column);
             }
             return player;
         }

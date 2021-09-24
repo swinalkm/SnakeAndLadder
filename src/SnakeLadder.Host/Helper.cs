@@ -27,7 +27,7 @@ namespace SnakeLadder.Host
         {
             string boardValue;
             var snakeToPrint = snakes.FirstOrDefault(snake => snake.Head.Row.Equals(i) && snake.Head.Column.Equals(j))?.Key;
-            var ladderToPrint = ladders.FirstOrDefault(ladder => ladder.Tip.Row.Equals(i) && ladder.Tip.Column.Equals(j))?.Key;
+            var ladderToPrint = ladders.FirstOrDefault(ladder => ladder.Foot.Row.Equals(i) && ladder.Foot.Column.Equals(j))?.Key;
 
             if (snakeToPrint != null)
                 boardValue = snakeToPrint;
