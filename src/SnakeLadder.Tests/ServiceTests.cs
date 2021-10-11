@@ -39,7 +39,7 @@ namespace SnakeLadder.Tests
             var response = _service.GetNextCurrentPosition(snake, ladder, _constants.SetBoard(snake, ladder), new Host.contracts.Player(20, new Host.contracts.Index(8, 0)), 1);
 
             Assert.NotNull(response);
-            Assert.Equal(response.CurrentPossition, 2);
+            Assert.Equal(response.CurrenKey, 2);
             Assert.Equal(response.Index.Row, 9);
             Assert.Equal(response.Index.Column, 1);
         }
@@ -51,7 +51,7 @@ namespace SnakeLadder.Tests
             var response = _service.GetNextCurrentPosition(snake, ladder, _constants.SetBoard(snake, ladder), new Host.contracts.Player(6, new Host.contracts.Index(6, 3)), 1);
 
             Assert.NotNull(response);
-            Assert.Equal(response.CurrentPossition, 40);
+            Assert.Equal(response.CurrenKey, 40);
             Assert.Equal(response.Index.Row, 6);
             Assert.Equal(response.Index.Column, 0);
         }

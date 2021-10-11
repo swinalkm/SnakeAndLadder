@@ -7,15 +7,15 @@
         //footvalue = 2
         //tip index{7,1}
         //foot index{9,1}
-        public Ladder(string key, int footvalue, Index foot, Index tip)
+        public Ladder(string uniqueKey, int footvalue, Index foot, Index tip)
         {
-            Key = key;
+            UniqueKey = uniqueKey;
             FootValue = footvalue;
             Tip = tip;
             Foot = foot;
         }
 
-        public string Key { get; set; }
+        public string UniqueKey { get; set; }
         public int FootValue { get; set; }
         public Index Tip { get; set; }
         public Index Foot { get; set; }

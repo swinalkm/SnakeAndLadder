@@ -25,9 +25,9 @@ namespace SnakeLadder.Tests
         {
             _constants.Setup(x => x.SetSnakes()).Returns(new List<Host.contracts.Snake>());
             _constants.Setup(x => x.SetLadders()).Returns(new List<Host.contracts.Ladder>());
-            _constants.Setup(x => x.SetDice()).Returns(new Dice(It.IsAny<bool>()));
-            _constants.Setup(x => x.SetBoard(It.IsAny<List<Host.contracts.Snake>>(), It.IsAny<List<Host.contracts.Ladder>>())).Returns(It.IsAny<List<Host.contracts.Grid>>());
-            _service.Setup(x => x.Start(It.IsAny<List<Host.contracts.Snake>>(), It.IsAny<List<Host.contracts.Ladder>>(), It.IsAny<List<Host.contracts.Grid>>(), It.IsAny<bool>()));
+            _constants.Setup(x => x.SetDice()).Returns(new NormalDice(It.IsAny<bool>()));
+            _constants.Setup(x => x.SetBoard(It.IsAny<List<Host.contracts.Snake>>(), It.IsAny<List<Host.contracts.Ladder>>())).Returns(It.IsAny<List<Host.contracts.BoardBlock>>());
+            _service.Setup(x => x.Start(It.IsAny<List<Host.contracts.Snake>>(), It.IsAny<List<Host.contracts.Ladder>>(), It.IsAny<List<Host.contracts.BoardBlock>>(), It.IsAny<bool>()));
             try
             {
                 _orchestrator.Start();
@@ -44,8 +44,8 @@ namespace SnakeLadder.Tests
             _constants.Setup(x => x.SetSnakes()).Returns(new List<Host.contracts.Snake>());
             _constants.Setup(x => x.SetLadders()).Returns(new List<Host.contracts.Ladder>());
 
-            _constants.Setup(x => x.SetBoard(It.IsAny<List<Host.contracts.Snake>>(), It.IsAny<List<Host.contracts.Ladder>>())).Returns(It.IsAny<List<Host.contracts.Grid>>());
-            _service.Setup(x => x.Start(It.IsAny<List<Host.contracts.Snake>>(), It.IsAny<List<Host.contracts.Ladder>>(), It.IsAny<List<Host.contracts.Grid>>(), It.IsAny<bool>()));
+            _constants.Setup(x => x.SetBoard(It.IsAny<List<Host.contracts.Snake>>(), It.IsAny<List<Host.contracts.Ladder>>())).Returns(It.IsAny<List<Host.contracts.BoardBlock>>());
+            _service.Setup(x => x.Start(It.IsAny<List<Host.contracts.Snake>>(), It.IsAny<List<Host.contracts.Ladder>>(), It.IsAny<List<Host.contracts.BoardBlock>>(), It.IsAny<bool>()));
             try
             {
                 _orchestrator.Start();

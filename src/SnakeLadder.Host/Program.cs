@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SnakeLadder.Host.DataContracts;
+using SnakeLadder.Host.DataContracts.Models;
+
 namespace SnakeLadder.Host
 {
     public class Program
@@ -7,15 +9,16 @@ namespace SnakeLadder.Host
         static void Main(string[] args)
         {
             var serviceCollection = new ServiceCollection()
-                                   .AddSingleton<IConstants, Constants>()
                                    .AddSingleton<IOrchestrator, Orchestrator>()
                                    .AddSingleton<IService, Service>()
+                                   .AddSingleton<IDice, NormalDice>()
+                                   .AddSingleton<IDice, CrookedDice>()
                                    .BuildServiceProvider();
 
             var orchestrator = serviceCollection.GetService<IOrchestrator>();
 
-            orchestrator.Start();
-            orchestrator.End();
+            var result = orchestrator.Start();
+            orchestrator.End(result);
         }
     }
 }

@@ -1,31 +1,42 @@
-﻿using SnakeLadder.Host.DataContracts;
+﻿using SnakeLadder.Host.contracts;
+using SnakeLadder.Host.DataContracts;
 using System;
+using System.Collections.Generic;
 
 namespace SnakeLadder.Host
 {
     public class Orchestrator : IOrchestrator
     {
-        private IConstants _constants;
         private IService _service;
-
-        public Orchestrator(IConstants constants, IService service)
+        private IPlayer _player;
+        private ISnake _snake;
+        private ILadder _ladder;
+        private IBoard _board;
+        private IDiceFactory _diceFactory;
+        public Orchestrator(IService service, IPlayer player, ISnake snake, ILadder ladder, IBoard board, IDiceFactory diceFactory)
         {
-            _constants = constants;
             _service = service;
+            _player = player;
+            _snake = snake;
+            _ladder = ladder;
+            _board = board;
+            _diceFactory = diceFactory;
         }
 
-        public void Start()
+        public List<Player> Start()
         {
             Helper.PrintRules();
-            var snakes = _constants.SetSnakes();
-            var ladders = _constants.SetLadders();
-            var dice = _constants.SetDice();
-            var board = _constants.SetBoard(snakes, ladders);
+            var snakes = _snake.SetSnakes();
+            var ladders = _ladder.SetLadders();
+            var dice = _diceFactory.SetDice();
+            var board = _board.SetBoard(snakes, ladders);
+            var players = _player.SetPlayers(2);
 
-            _service.Start(snakes, ladders, board, dice.IsNormalDice);
+            return _service.Start(players);
         }
-        public void End()
+        public void End(List<Player> players)
         {
+            _service.End(players);
             Console.ReadKey();
             Console.ReadKey();
         }

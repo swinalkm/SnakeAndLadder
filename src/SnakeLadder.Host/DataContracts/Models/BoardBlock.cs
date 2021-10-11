@@ -1,8 +1,8 @@
 ﻿namespace SnakeLadder.Host.contracts
 {
-    public class Grid
+    public class BoardBlock
     {
-        public Grid(string key, Index index)
+        public BoardBlock(string key, Index index)
         {
             Key = key;
             Index = index;

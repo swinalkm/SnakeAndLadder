@@ -1,12 +1,9 @@
-﻿namespace SnakeLadder.Host.DataContracts
+﻿using System;
+
+namespace SnakeLadder.Host.DataContracts
 {
     public class Dice
     {
-        public Dice(bool isNormalDice)
-        {
-            IsNormalDice = isNormalDice;
-        }
-
-        public bool IsNormalDice { get; set; }
+        public Random Count { get; set; } = new Random();
     }
 }

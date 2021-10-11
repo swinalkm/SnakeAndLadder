@@ -3,11 +3,10 @@ using System.Collections.Generic;
 
 namespace SnakeLadder.Host.DataContracts
 {
-    public interface IConstants
+    public interface ILadder
     {
+        Player StepUp();
         List<Ladder> SetLadders();
-        List<Snake> SetSnakes();
-        Dice SetDice();
-        List<Grid> SetBoard(List<Snake> snakes, List<Ladder> ladders);
+        List<Ladder> GetLadders();
     }
 }

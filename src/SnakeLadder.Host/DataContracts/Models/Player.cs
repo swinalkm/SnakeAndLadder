@@ -2,13 +2,15 @@
 {
     public class Player
     {
-        public Player(int currentPossition, Index index)
+        public Player(string name, int currenKey, Index index)
         {
-            CurrentPossition = currentPossition;
+            Name = name;
+            CurrenKey = currenKey;
             Index = index;
         }
 
-        public int CurrentPossition { get; set; }
+        public string Name { get; set; }
+        public int CurrenKey { get; set; }
         public Index Index { get; set; }
     }
 }

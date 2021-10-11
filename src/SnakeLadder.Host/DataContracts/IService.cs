@@ -5,6 +5,7 @@ namespace SnakeLadder.Host
 {
     public interface IService
     {
-        void Start(List<Snake> snakes, List<Ladder> ladders, List<Grid> board, bool isNormalDice);
+        List<Player> Start(List<Player> players);
+        void End(List<Player> players);
     }
 }

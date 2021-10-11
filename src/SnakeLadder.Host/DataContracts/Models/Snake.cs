@@ -7,14 +7,14 @@
         //headValue = 21
         //Head index{7,0}
         //Tail index{9,1}
-        public Snake(string key, int headValue, Index head, Index tail)
+        public Snake(string uniqueKey, int headValue, Index head, Index tail)
         {
-            Key = key;
+            UniqueKey = uniqueKey;
             HeadValue = headValue;
             Head = head;
             Tail = tail;
         }
-        public string Key { get; set; }
+        public string UniqueKey { get; set; }
         public int HeadValue { get; set; }
         public Index Head { get; set; }
         public Index Tail { get; set; }
