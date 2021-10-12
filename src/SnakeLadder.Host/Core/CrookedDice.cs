@@ -1,4 +1,6 @@
-﻿namespace SnakeLadder.Host.DataContracts.Models
+﻿using SnakeLadder.Host.DataContracts;
+
+namespace SnakeLadder.Host
 {
     public class CrookedDice : Dice, IDice
     {

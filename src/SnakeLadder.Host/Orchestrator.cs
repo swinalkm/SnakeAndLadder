@@ -1,5 +1,4 @@
-﻿using SnakeLadder.Host.contracts;
-using SnakeLadder.Host.DataContracts;
+﻿using SnakeLadder.Host.DataContracts;
 using System;
 using System.Collections.Generic;
 
@@ -37,8 +36,6 @@ namespace SnakeLadder.Host
         public void End(List<Player> players)
         {
             _service.End(players);
-            Console.ReadKey();
-            Console.ReadKey();
         }
     }
 }

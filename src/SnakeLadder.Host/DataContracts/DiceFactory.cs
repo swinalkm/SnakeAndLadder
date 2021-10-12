@@ -1,5 +1,4 @@
-﻿using SnakeLadder.Host.DataContracts.Models;
-using System;
+﻿using System;
 
 namespace SnakeLadder.Host.DataContracts
 {

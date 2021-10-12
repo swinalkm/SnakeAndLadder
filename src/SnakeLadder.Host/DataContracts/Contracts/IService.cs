@@ -1,7 +1,6 @@
-﻿using SnakeLadder.Host.contracts;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace SnakeLadder.Host
+namespace SnakeLadder.Host.DataContracts
 {
     public interface IService
     {

@@ -1,4 +1,6 @@
-﻿namespace SnakeLadder.Host.DataContracts
+﻿using SnakeLadder.Host.DataContracts;
+
+namespace SnakeLadder.Host
 {
     public class NormalDice : Dice, IDice
     {

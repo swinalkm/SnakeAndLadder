@@ -1,15 +1,23 @@
-﻿using System;
+﻿using SnakeLadder.Host.DataContracts;
+using System;
 using System.Collections.Generic;
-using SnakeLadder.Host.contracts;
+using System.Linq;
 
-namespace SnakeLadder.Host.DataContracts
+namespace SnakeLadder.Host
 {
     public class LadderService : ILadder
     {
         public List<Ladder> Ladders { get; set; }
+        private readonly IBoard _board;
+
+        public LadderService(IBoard board)
+        {
+            _board = board;
+        }
 
         public List<Ladder> GetLadders()
         {
+            Ladders.EnsureNotNullOrEmpty();
             return Ladders;
         }
 
@@ -29,9 +37,20 @@ namespace SnakeLadder.Host.DataContracts
             return Ladders;
         }
 
-        public Player StepUp()
+        public Player StepUp(Player player, int diceRolled)
         {
-            throw new NotImplementedException();
+            player.EnsureNotNullOrEmpty();
+            var ladder = Ladders.FirstOrDefault(x => x.UniqueValue.Equals(player.CurrenKey + diceRolled));
+            var board = _board.GetBoard();
+            var playerValue = board.FirstOrDefault(x => x.Index.Row.Equals(ladder.Tip.Row) && x.Index.Column.Equals(ladder.Tip.Column));
+            string stringValue = GetValue(playerValue, "L-");
+            player.CurrenKey = Int16.Parse(stringValue);
+            player.Index = new Index(ladder.Tip.Row, ladder.Tip.Column);
+            return player;
+        }
+        private string GetValue(BoardBlock playerValue, string key)
+        {
+            return playerValue.Key.Replace(key, "  ").Trim();
         }
     }
 }

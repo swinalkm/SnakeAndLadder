@@ -1,9 +1,9 @@
-﻿using System;
+﻿using SnakeLadder.Host.DataContracts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using SnakeLadder.Host.contracts;
 
-namespace SnakeLadder.Host.DataContracts
+namespace SnakeLadder.Host
 {
     public class NormalPlayer : IPlayer
     {
@@ -20,10 +20,10 @@ namespace SnakeLadder.Host.DataContracts
 
         public Player GetPlayerCurrentPosition(string name)
         {
-            return new Player(name, 1, new Index(1, 1));
+            return null;
         }
 
-        public Player GetPlayerNextPosition(Player currentPlayer, int diceRolled)
+        public Player MovePlayer(Player currentPlayer, int diceRolled)
         {
             var total = currentPlayer.CurrenKey + diceRolled;
             var board = _board.GetBoard();
@@ -35,18 +35,10 @@ namespace SnakeLadder.Host.DataContracts
                 var count = board.FirstOrDefault(x => x.Key.Trim().Equals(total.ToString()));
                 currentPlayer.Index = new Index(count.Index.Row, count.Index.Column);
             }
-            else if (_snake.GetSnakes().Exists(x => x.HeadValue.Equals(total)))
-            {
+            else if (_snake.GetSnakes().Exists(x => x.UniqueValue.Equals(total)))
                 currentPlayer = _snake.BitePlayer(currentPlayer, diceRolled);
-            }
-            else if (ladders.Exists(x => x.FootValue.Equals(total)))
-            {
-                var ladder = ladders.FirstOrDefault(x => x.FootValue.Equals(total));
-                var playerValue = board.FirstOrDefault(x => x.Index.Row.Equals(ladder.Tip.Row) && x.Index.Column.Equals(ladder.Tip.Column));
-                string stringValue = GetValue(playerValue, "L-");
-                currentPlayer.CurrenKey = Int16.Parse(stringValue);
-                currentPlayer.Index = new Index(ladder.Tip.Row, ladder.Tip.Column);
-            }
+            else if (ladders.Exists(x => x.UniqueValue.Equals(total)))
+                currentPlayer = _ladder.StepUp(currentPlayer, diceRolled);
             return currentPlayer;
         }
 

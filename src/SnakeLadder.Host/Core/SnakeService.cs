@@ -1,9 +1,9 @@
-﻿using System;
+﻿using SnakeLadder.Host.DataContracts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using SnakeLadder.Host.contracts;
 
-namespace SnakeLadder.Host.DataContracts
+namespace SnakeLadder.Host
 {
     public class SnakeService : ISnake
     {
@@ -17,19 +17,21 @@ namespace SnakeLadder.Host.DataContracts
         public List<Snake> Snakes { get; set; }
         public Player BitePlayer(Player player, int diceRolled)
         {
+            player.EnsureNotNullOrEmpty();
             var board = _board.GetBoard();
-            var snake = Snakes.FirstOrDefault(x => x.HeadValue.Equals(player.CurrenKey + diceRolled));
+            var snake = Snakes.FirstOrDefault(x => x.UniqueValue.Equals(player.CurrenKey + diceRolled));
             var playerValue = board.FirstOrDefault(x => x.Index.Row.Equals(snake.Tail.Row) && x.Index.Column.Equals(snake.Tail.Column));
             player.CurrenKey = Int16.Parse(GetValue(playerValue, "S-"));
             player.Index = new Index(snake.Tail.Row, snake.Tail.Column);
             return player;
         }
-        public string GetValue(BoardBlock playerValue, string key)
+        private string GetValue(BoardBlock playerValue, string key)
         {
             return playerValue.Key.Replace(key, "  ").Trim();
         }
         public List<Snake> GetSnakes()
         {
+            Snakes.EnsureNotNullOrEmpty();
             return Snakes;
         }
 

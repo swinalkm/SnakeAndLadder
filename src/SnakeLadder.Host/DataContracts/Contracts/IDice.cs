@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SnakeLadder.Host.DataContracts
+﻿namespace SnakeLadder.Host.DataContracts
 {
     public interface IDice
     {

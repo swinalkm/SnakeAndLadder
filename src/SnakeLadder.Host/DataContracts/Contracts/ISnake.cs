@@ -1,5 +1,4 @@
-﻿using SnakeLadder.Host.contracts;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace SnakeLadder.Host.DataContracts
 {

@@ -1,5 +1,4 @@
-﻿using SnakeLadder.Host.contracts;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace SnakeLadder.Host.DataContracts
 {
@@ -7,6 +6,6 @@ namespace SnakeLadder.Host.DataContracts
     {
         List<Player> SetPlayers(int players);
         Player GetPlayerCurrentPosition(string name);
-        Player GetPlayerNextPosition(Player current, int diceRolled);
+        Player MovePlayer(Player current, int diceRolled);
     }
 }

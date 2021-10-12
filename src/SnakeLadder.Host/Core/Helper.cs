@@ -1,4 +1,4 @@
-﻿using SnakeLadder.Host.contracts;
+﻿using SnakeLadder.Host.DataContracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SnakeLadder.Host.DataContracts;
-using SnakeLadder.Host.DataContracts.Models;
 
 namespace SnakeLadder.Host
 {
@@ -13,6 +12,11 @@ namespace SnakeLadder.Host
                                    .AddSingleton<IService, Service>()
                                    .AddSingleton<IDice, NormalDice>()
                                    .AddSingleton<IDice, CrookedDice>()
+                                   .AddSingleton<IDiceFactory, DiceFactory>()
+                                   .AddSingleton<ISnake, SnakeService>()
+                                   .AddSingleton<ILadder, LadderService>()
+                                   .AddSingleton<IPlayer, NormalPlayer>()
+                                   .AddSingleton<IBoard, BoardService>()
                                    .BuildServiceProvider();
 
             var orchestrator = serviceCollection.GetService<IOrchestrator>();

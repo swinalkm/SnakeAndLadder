@@ -1,4 +1,4 @@
-﻿namespace SnakeLadder.Host.contracts
+﻿namespace SnakeLadder.Host.DataContracts
 {
     public class Index
     {
